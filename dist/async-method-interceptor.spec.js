@@ -39,7 +39,7 @@ describe("async method interceptor test", () => {
         interceptorCall = true;
         return result;
     });
-    it("wave TestInterceptor to TestService", test_util_1.testZone(() => __awaiter(this, void 0, void 0, function* () {
+    it("weave TestInterceptor to TestService", test_util_1.testZone(() => __awaiter(this, void 0, void 0, function* () {
         const kernel = new inversify.Kernel();
         kernel.bind(TestService).to(TestService);
         kernel.applyMiddleware(interceptor.methodInterceptorMiddleware(kernel, {

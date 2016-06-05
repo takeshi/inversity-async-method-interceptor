@@ -14,7 +14,7 @@ export function methodInterceptorMiddleware(kernel: inversify.IKernel, pattern: 
         return (args: inversify.PlanAndResolveArgs) => {
             let results = planAndResolve(args);
             for (let i of results) {
-                waveInterceptorByMethodRegExp(kernel, pattern, i, interceptor);
+                weaveInterceptorByMethodRegExp(kernel, pattern, i, interceptor);
             }
             return results;
         };
@@ -36,7 +36,7 @@ function getPropertyNames(target: any): string[] {
     return propNames;
 }
 
-function waveInterceptorByMethodRegExp(kernel: inversify.IKernel, pattern: AsyncMethodInterceptorPattern, target: any, interceptor: AsyncMethodInterceptor) {
+function weaveInterceptorByMethodRegExp(kernel: inversify.IKernel, pattern: AsyncMethodInterceptorPattern, target: any, interceptor: AsyncMethodInterceptor) {
     const className = target.constructor.name;
     if (pattern.excludeClass) {
         if (pattern.excludeClass.test(className)) {
@@ -68,11 +68,11 @@ function waveInterceptorByMethodRegExp(kernel: inversify.IKernel, pattern: Async
         }
         return true;
     }).map((key: string) => {
-        return waveInterceptor(kernel, target, key, interceptor);
+        return weaveInterceptor(kernel, target, key, interceptor);
     });
 }
 
-function waveInterceptor(kernel: inversify.IKernel, target: any, methodName: string, interceptor: AsyncMethodInterceptor) {
+function weaveInterceptor(kernel: inversify.IKernel, target: any, methodName: string, interceptor: AsyncMethodInterceptor) {
     if (!target || !target[methodName]) {
         throw new Error('no original function ' + methodName + ' to wrap');
     }

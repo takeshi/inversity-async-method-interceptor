@@ -20,7 +20,7 @@ describe("async method interceptor test", () => {
         return result;
     };
 
-    it("wave TestInterceptor to TestService",
+    it("weave TestInterceptor to TestService",
         testZone(async () => {
             const kernel = new inversify.Kernel();
             kernel.bind(TestService).to(TestService);

@@ -17,7 +17,7 @@ function methodInterceptorMiddleware(kernel, pattern, interceptor) {
         return (args) => {
             let results = planAndResolve(args);
             for (let i of results) {
-                waveInterceptorByMethodRegExp(kernel, pattern, i, interceptor);
+                weaveInterceptorByMethodRegExp(kernel, pattern, i, interceptor);
             }
             return results;
         };
@@ -37,7 +37,7 @@ function getPropertyNames(target) {
     }
     return propNames;
 }
-function waveInterceptorByMethodRegExp(kernel, pattern, target, interceptor) {
+function weaveInterceptorByMethodRegExp(kernel, pattern, target, interceptor) {
     const className = target.constructor.name;
     if (pattern.excludeClass) {
         if (pattern.excludeClass.test(className)) {
@@ -68,10 +68,10 @@ function waveInterceptorByMethodRegExp(kernel, pattern, target, interceptor) {
         }
         return true;
     }).map((key) => {
-        return waveInterceptor(kernel, target, key, interceptor);
+        return weaveInterceptor(kernel, target, key, interceptor);
     });
 }
-function waveInterceptor(kernel, target, methodName, interceptor) {
+function weaveInterceptor(kernel, target, methodName, interceptor) {
     if (!target || !target[methodName]) {
         throw new Error('no original function ' + methodName + ' to wrap');
     }
