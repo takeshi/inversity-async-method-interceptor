@@ -28,7 +28,7 @@ describe("async method interceptor test", () => {
         }
     };
     TestService = __decorate([
-        inversify.injectable(), 
+        inversify.injectable(),
         __metadata('design:paramtypes', [])
     ], TestService);
     let interceptorCall = false;
@@ -39,7 +39,7 @@ describe("async method interceptor test", () => {
         interceptorCall = true;
         return result;
     });
-    it("wave interceptor to TestSErvice", test_util_1.testZone(() => __awaiter(this, void 0, void 0, function* () {
+    it("wave testInterceptor to TestService", test_util_1.testZone(() => __awaiter(this, void 0, void 0, function* () {
         const kernel = new inversify.Kernel();
         kernel.bind(TestService).to(TestService);
         kernel.applyMiddleware(interceptor.methodInterceptorMiddleware(kernel, {
